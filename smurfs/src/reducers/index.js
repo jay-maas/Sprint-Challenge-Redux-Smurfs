@@ -4,7 +4,10 @@
 import {
   FETCH_SMURFS_START,
   FETCH_SMURFS_ERROR,
-  FETCH_SMURFS_SUCCESS
+  FETCH_SMURFS_SUCCESS,
+  ADD_SMURF_START,
+  ADD_SMURF_ERROR,
+  ADD_SMURF_SUCCESS
 } from '../actions'
 /*
  Your initial/default state for this project could *Although does not have to* look a lot like this
@@ -48,6 +51,25 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingSmurfs: false,
+        smurfs: action.payload,
+        error: ''
+      }
+    case ADD_SMURF_START:
+      return {
+        ...state,
+        addingSmurf: true,
+        error: ''
+      }
+    case ADD_SMURF_ERROR:
+      return {
+        ...state,
+        addingSmurf: false,
+        error: action.payload
+      }
+    case ADD_SMURF_SUCCESS:
+      return {
+        ...state,
+        addingSmurf: false,
         smurfs: action.payload,
         error: ''
       }

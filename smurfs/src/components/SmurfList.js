@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getSmurfs } from '../actions'
+import { getSmurfs, addSmurf } from '../actions'
 import Smurf from './Smurf'
 
 class SmurfList extends React.Component {
@@ -10,16 +10,25 @@ class SmurfList extends React.Component {
             age: '',
             height: ''
         }
-        
     }
     componentDidMount() {
         this.props.getSmurfs()
     }
     handleChanges = e => {
-        this.setState({
+        this.setState({ newSmurf: {
             ...this.state.newSmurf,
             [e.target.name]: e.target.value
-
+        }})
+    }
+    addSmurf = e => {
+        e.preventDefault()
+        this.props.addSmurf(this.state.newSmurf)
+        this.setState({
+            newSmurf: {
+                name: '',
+                age: '',
+                height: ''
+            }
         })
     }
     render() {
@@ -34,20 +43,24 @@ class SmurfList extends React.Component {
                         type="text"
                         name="name"
                         value={this.state.newSmurf.name}
-                        onChange={this.onChange}
+                        onChange={this.handleChanges}
+                        placeholder="name"
                     />
                     <input 
                         type="number"
                         name="age"
-                        value={this.state.newSmurf.name}
-                        onChange={this.onChange}
+                        value={this.state.newSmurf.age}
+                        onChange={this.handleChanges}
+                        placeholder="age"
                     />
                     <input 
-                        type="number"
+                        type="text"
                         name="height"
-                        value={this.state.newSmurf.name}
-                        onChange={this.onChange}
+                        value={this.state.newSmurf.height}
+                        onChange={this.handleChanges}
+                        placeholder="height"
                     />
+                    <button onClick={this.addSmurf}>Add Smurf</button>
                 </form>
             </React.Fragment>
         )
@@ -62,5 +75,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { getSmurfs }
+    { getSmurfs, addSmurf }
 )(SmurfList)
