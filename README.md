@@ -23,8 +23,22 @@ In this challenge, you are to build the Smurfs village once again, only this tim
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+#Answer
+Acions are controlled events that can be are customizable and can be passed around wherever needed. Reducers provide a map for placing the correct state at the correct times. The store is like a virtual store,
+if you have the correct set up, you can access it anywhere, give and take. Using the store allows it to exist as the sole truth for shared state because it literally has access to all states at all times that it was defined to use.
+
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+#Answer
+Application state is data that is reliant on each other. If you have data that gets modified in one place, you want it to to change in another, especially when that data has multiple points of existance spanned over different components. Component state is state that relies upon disposable data/logic, or temporary data/logic, or data/logic that only pertains to that specific component and maybe one child. The best way to decide is the scale of the application. Application State will manage most of the state, but component state is useful for things like capturing input data, toggling display on something like a nav bar or button etc.
+
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
+#Answer
+Redux thunk allows us to call action creators instead of action objects. The action creators can use the dispatch method from the store. This is great because it really opens up the possibilities with redux. 
+
+
 
 ## Project Set Up
 
