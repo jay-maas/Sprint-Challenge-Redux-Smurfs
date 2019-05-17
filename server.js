@@ -21,8 +21,9 @@ let smurfs = [
   }
 ];
 server.get('/smurfs', (req, res) => {
-  res.json(smurfs);
+    res.status(200).json(smurfs);
 });
+
 let smurfId = smurfs.length;
 
 server.post('/smurfs', (req, res) => {
